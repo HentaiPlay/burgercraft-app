@@ -1,0 +1,6 @@
+[submodule "burgercraft-app_frontend"]
+	path = burgercraft-app_frontend
+	url = https://github.com/HentaiPlay/burgercraft-app_frontend.git
+[submodule "burgercraft-app_backend"]
+	path = burgercraft-app_backend
+	url = https://github.com/HentaiPlay/burgercraft-app_backend.git
