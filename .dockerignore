@@ -1,13 +1,11 @@
 # FRONTEND
 /burgercraft-app_frontend/dist
 /burgercraft-app_frontend/node_modules
-/burgercraft-app_frontend/package-lock.json
 /burgercraft-app_frontend/.idea
 /burgercraft-app_frontend/.vscode
 
 # BACKEND
 /burgercraft-app_backend/dist
 /burgercraft-app_backend/node_modules
-/burgercraft-app_backend/package-lock.json
 /burgercraft-app_backend/.idea
 /burgercraft-app_backend/.vscode
