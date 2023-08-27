@@ -33,9 +33,12 @@ services:
     networks:
       - app_network
     depends_on:
-      - traefik
-      - postgres
-      - pgadmin
+      traefik:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+      pgadmin:
+        condition: service_started
     labels:
       - "traefik.http.routers.backend.rule=(Host(`${APP_HOST}`) && PathPrefix(`/api`))"
 
@@ -48,7 +51,6 @@ services:
         - POSTGRES_DB=${POSTGRES_DB}
     image: burgercraft_app.postgres
     container_name: burgercraft_app.postgres
-    restart: always
     env_file:
       - .env
     environment:
@@ -61,6 +63,11 @@ services:
       - app_network
     depends_on:
       - traefik
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # WEB INTERFACE DATABASE
   pgadmin:
@@ -69,7 +76,6 @@ services:
       dockerfile: ./docker/pgadmin.Dockerfile
     image: burgercraft_app.pgadmin
     container_name: burgercraft_app.pgadmin
-    restart: always
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
@@ -77,7 +83,9 @@ services:
       - ${PGADMIN_PORT}:80
     volumes:
       - pgadmin:/var/lib/pgadmin
-      - pgadmin_servers:/pgadmin4/servers.json
+      # конфигурация подключения пока не умеет автоматически подтягивать env переменные,
+      # поэтому при измении env окружения (а именно POSTGRES_USER и POSTGRES_PORT) нужно вручную менять servers.json
+      - ./servers.json:/pgadmin4/servers.json
     networks:
       - app_network
     depends_on:
@@ -111,4 +119,3 @@ networks:
 volumes:
   postgres:
   pgadmin:
-  pgadmin_servers:
