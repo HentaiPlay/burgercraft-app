@@ -34,7 +34,7 @@ pgadmin:
 	@printf '\n%8s \xF0\x9F\x94\x90 ${PURPLE_COLOR} Авторизация: ${NO_COLOR} \n'
 	@printf '\n%7s email: ${PGADMIN_DEFAULT_EMAIL}'
 	@printf '\n%7s password: ${PGADMIN_DEFAULT_PASSWORD} \n'
-	@printf '\n%8s \xF0\x9F\x94\x8C ${PURPLE_COLOR} Создание подключения: ${NO_COLOR} \n'
+	@printf '\n%8s \xF0\x9F\x94\x8C ${PURPLE_COLOR} Создание подключения (если при сборке в "Servers" не создано подключение): ${NO_COLOR} \n'
 	@printf '\n%8s Имя/адрес сервера: postgres'
 	@printf '\n%8s Имя пользователя: ${POSTGRES_USER}'
 	@printf '\n%8s Пароль: ${POSTGRES_PASSWORD} \n\n'
