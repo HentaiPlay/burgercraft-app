@@ -24,12 +24,15 @@ services:
     build:
       context: .
       dockerfile: ./docker/backend.Dockerfile
+      target: development
     image: burgercraft_app.backend
     container_name: burgercraft_app.backend
     env_file:
       - .env
     ports:
       - ${APP_API_PORT}:3000
+    volumes:
+      - ./burgercraft-app_backend:/usr/src/app
     networks:
       - app_network
     depends_on:
@@ -41,6 +44,7 @@ services:
         condition: service_started
     labels:
       - "traefik.http.routers.backend.rule=(Host(`${APP_HOST}`) && PathPrefix(`/api`))"
+    command: sh -c "npm run migration:run && npm run start:dev"
 
   # DATABASE
   postgres:
