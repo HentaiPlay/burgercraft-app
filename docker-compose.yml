@@ -44,7 +44,7 @@ services:
         condition: service_started
     labels:
       - "traefik.http.routers.backend.rule=(Host(`${APP_HOST}`) && PathPrefix(`/api`))"
-    command: sh -c "npm run migration:run && npm run start:dev"
+    command: sh -c "npx prisma migrate dev && npx prisma db seed && npm run start:dev"
 
   # DATABASE
   postgres:
@@ -69,7 +69,7 @@ services:
       - traefik
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
-      interval: 10s
+      interval: 5s
       timeout: 5s
       retries: 5
 
