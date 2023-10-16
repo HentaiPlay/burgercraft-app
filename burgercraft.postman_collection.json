@@ -468,7 +468,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "{{base_url}}/api/healthcheck"
+				"url": "{{base_url}}/healthcheck"
 			},
 			"response": []
 		}
@@ -476,7 +476,7 @@
 	"auth": {
 		"type": "bearer",
 		"bearer": {
-			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImNyYWZ0ZXI5OCIsInJvbGUiOiJjcmFmdGVyIiwiaWF0IjoxNjk3NDIxNTkzLCJleHAiOjE2OTc0MjUxOTN9.aCmSKSr0XlzwCjYKa5E8Vk1oW0QcbbLCbuZY-DIPpbs"
+			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImNyYWZ0ZXI5OCIsInJvbGUiOiJjcmFmdGVyIiwiaWF0IjoxNjk3NDk1OTcxLCJleHAiOjE2OTc0OTk1NzF9.0E0JZGa7DwaTb_KAdBwQfzLYbzTsTfoZhd_XmNDFVNI"
 		}
 	},
 	"event": [
