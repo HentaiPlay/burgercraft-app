@@ -1,0 +1,509 @@
+{
+	"info": {
+		"_postman_id": "c51685bb-57d6-4b02-8f8e-a787bb1621a6",
+		"name": "burgercraft",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "15685132"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"\",\n    \"password\": \"\",\n    \"roleId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"crafter98\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "refresh-token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/auth/refresh"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "avatar",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "image/png",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "image/jpeg",
+								"type": "text"
+							}
+						],
+						"url": "{{base_url}}/users/avatar/2"
+					},
+					"response": []
+				},
+				{
+					"name": "avatar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": "{{base_url}}/users/avatar"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"new_name\",\n    \"password\": \"new_password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/users"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/users"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "picture",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "image/png",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{base_url}}/images/products/drinks/fanta.jpg"
+					},
+					"response": []
+				},
+				{
+					"name": "products-by-type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/products/drink"
+					},
+					"response": []
+				},
+				{
+					"name": "all-products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/products"
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Новый напиток\",\n    \"type\": \"drink\",\n    \"price\": 40\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/products"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 27,\n    \"name\": \"Новое название продукта\",\n    \"price\": 45\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/products"
+					},
+					"response": []
+				},
+				{
+					"name": "upload-photo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "data",
+									"value": "{ \"name\": \"Название продукта, \"type\": \"drink\" }",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": "{{base_url}}/products/photo"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "burgers",
+			"item": [
+				{
+					"name": "burger",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/burgers/1"
+					},
+					"response": []
+				},
+				{
+					"name": "burgers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{base_url}}/burgers"
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderId\": 1,\n    \"ingredients\": [\n        { \"id\": 1, \"type\": \"burger_ingredient\", \"slug\": \"verhnyaya_bulochka\" },\n        { \"id\": 3, \"type\": \"burger_ingredient\", \"slug\": \"govyazhiy_bifshteks\" },\n        { \"id\": 8, \"type\": \"burger_ingredient\", \"slug\": \"bekon\" },\n        { \"id\": 5, \"type\": \"burger_ingredient\", \"slug\": \"kurinyy_bifshteks\" },\n        { \"id\": 14, \"type\": \"burger_ingredient\", \"slug\": \"kapustnyy_list\" },\n        { \"id\": 2, \"type\": \"burger_ingredient\", \"slug\": \"nizhnyaya_bulochka\" }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/burgers"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"price\": 123,\n    \"ingredients\": [\n        { \"id\": 1, \"type\": \"burger_ingredient\", \"slug\": \"verhnyaya_bulochka\" },\n        { \"id\": 3, \"type\": \"burger_ingredient\", \"slug\": \"govyazhiy_bifshteks\" },\n        { \"id\": 10, \"type\": \"burger_ingredient\", \"slug\": \"syr\" },\n        { \"id\": 8, \"type\": \"burger_ingredient\", \"slug\": \"bekon\" },\n        { \"id\": 5, \"type\": \"burger_ingredient\", \"slug\": \"kurinyy_bifshteks\" },\n        { \"id\": 14, \"type\": \"burger_ingredient\", \"slug\": \"kapustnyy_list\" },\n        { \"id\": 2, \"type\": \"burger_ingredient\", \"slug\": \"nizhnyaya_bulochka\" }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/burgers"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/burgers"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/orders/1"
+					},
+					"response": []
+				},
+				{
+					"name": "order-list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isSaled\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/orders/list"
+					},
+					"response": []
+				},
+				{
+					"name": "picture",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/images/orders/order_preview_content.png"
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"burgers\": [\n        {\n            \"ingredients\": [\n                { \"id\": 1, \"type\": \"burger_ingredient\", \"slug\": \"verhnyaya_bulochka\" },\n                { \"id\": 3, \"type\": \"burger_ingredient\", \"slug\": \"govyazhiy_bifshteks\" },\n                { \"id\": 8, \"type\": \"burger_ingredient\", \"slug\": \"bekon\" },\n                { \"id\": 5, \"type\": \"burger_ingredient\", \"slug\": \"kurinyy_bifshteks\" },\n                { \"id\": 14, \"type\": \"burger_ingredient\", \"slug\": \"kapustnyy_list\" },\n                { \"id\": 2, \"type\": \"burger_ingredient\", \"slug\": \"nizhnyaya_bulochka\" }\n            ]\n        },\n        {\n            \"ingredients\": [\n                { \"id\": 1, \"type\": \"burger_ingredient\", \"slug\": \"verhnyaya_bulochka\" },\n                { \"id\": 6, \"type\": \"burger_ingredient\", \"slug\": \"tomatnyy_sous\" },\n                { \"id\": 13, \"type\": \"burger_ingredient\", \"slug\": \"kapustnyy_list\" },\n                { \"id\": 15, \"type\": \"burger_ingredient\", \"slug\": \"masliny\" },\n                { \"id\": 14, \"type\": \"burger_ingredient\", \"slug\": \"kapustnyy_list\" },\n                { \"id\": 2, \"type\": \"burger_ingredient\", \"slug\": \"nizhnyaya_bulochka\" }\n            ]\n        }\n    ],\n    \"ordersProducts\": [\n        { \"id\": 17, \"type\": \"snack\", \"slug\": \"kartoshka_fri\" },\n        { \"id\": 19, \"type\": \"sauce\", \"slug\": \"ketchup\" },\n        { \"id\": 23, \"type\": \"drink\", \"slug\": \"coca_cola\" }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"ordersProducts\": [\n        { \"id\": 17, \"type\": \"snack\", \"slug\": \"kartoshka_fri\" },\n        { \"id\": 19, \"type\": \"sauce\", \"slug\": \"ketchup\" },\n        { \"id\": 26, \"type\": \"drink\", \"slug\": \"coca_cola\" }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "change-status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"status\": \"ready\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/orders/status"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "stats",
+			"item": [
+				{
+					"name": "stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/stats"
+					},
+					"response": []
+				},
+				{
+					"name": "stats-by-creafter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/stats/2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "app-healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{base_url}}/api/healthcheck"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImNyYWZ0ZXI5OCIsInJvbGUiOiJjcmFmdGVyIiwiaWF0IjoxNjk3NDIxNTkzLCJleHAiOjE2OTc0MjUxOTN9.aCmSKSr0XlzwCjYKa5E8Vk1oW0QcbbLCbuZY-DIPpbs"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://burgercraft.localhost/api",
+			"type": "string"
+		}
+	]
+}

@@ -5,50 +5,84 @@ services:
   # FRONTEND
   frontend:
     build:
-      context: ./
-      dockerfile: ./burgercraft-app_frontend/Dockerfile
+      context: .
+      dockerfile: ./docker/frontend.Dockerfile
     image: burgercraft_app.frontend
     container_name: burgercraft_app.frontend
     ports:
-      - ${APP_PORT}:80
+      - ${APP_CLIENT_PORT}:80
     networks:
       - app_network
+    depends_on:
+      backend:
+        condition: service_healthy
+    labels:
+      - "traefik.http.routers.frontend.rule=Host(`${APP_HOST}`)"
 
   # BACKEND
   backend:
     build:
-      context: ./
-      dockerfile: ./burgercraft-app_backend/Dockerfile
+      context: .
+      dockerfile: ./docker/backend.Dockerfile
+      target: development
     image: burgercraft_app.backend
     container_name: burgercraft_app.backend
+    env_file:
+      - .env
     ports:
-      - ${API_PORT}:3000
+      - ${APP_API_PORT}:3000
+    volumes:
+      - ./burgercraft-app_backend:/usr/src/app
     networks:
       - app_network
     depends_on:
-      - postgres
+      traefik:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+      pgadmin:
+        condition: service_started
+    labels:
+      - "traefik.http.routers.backend.rule=(Host(`${APP_HOST}`) && PathPrefix(`/api`))"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -X GET http://localhost:${APP_API_PORT}/api/healthcheck"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    command: sh -c "npx prisma migrate dev && npx prisma db seed && npm run start:dev"
 
   # DATABASE
   postgres:
     build:
-      context: ./postgres
-      dockerfile: postgres.Dockerfile
+      context: .
+      dockerfile: ./docker/postgres.Dockerfile
+      args:
+        - POSTGRES_DB=${POSTGRES_DB}
     image: burgercraft_app.postgres
     container_name: burgercraft_app.postgres
+    env_file:
+      - .env
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DATABASE=${POSTGRES_DATABASE}
+      PG_DATA: /var/lib/postgresql/data
     ports:
       - ${POSTGRES_PORT}:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
     networks:
       - app_network
+    depends_on:
+      - traefik
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   # WEB INTERFACE DATABASE
   pgadmin:
     build:
-      context: ./postgres
-      dockerfile: pgadmin.Dockerfile
+      context: .
+      dockerfile: ./docker/pgadmin.Dockerfile
     image: burgercraft_app.pgadmin
     container_name: burgercraft_app.pgadmin
     environment:
@@ -56,27 +90,41 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
     ports:
       - ${PGADMIN_PORT}:80
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+      # конфигурация подключения пока не умеет автоматически подтягивать env переменные,
+      # поэтому при измении env окружения (а именно POSTGRES_USER и POSTGRES_PORT) нужно вручную менять servers.json
+      - ./servers.json:/pgadmin4/servers.json
     networks:
       - app_network
     depends_on:
+      - traefik
       - postgres
+    labels:
+      - "traefik.http.routers.pgadmin.rule=Host(`${PGADMIN_HOST}`)"
 
   # WEB SERVER
-  nginx:
+  traefik:
     build:
-      context: ./nginx
-    image: burgercraft_app.nginx
-    container_name: burgercraft_app.nginx
+      context: .
+      dockerfile: ./docker/traefik.Dockerfile
+    image: burgercraft_app.traefik
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+    container_name: burgercraft_app.traefik
     ports:
-      - ${NGINX_PORT}:80
+      - 80:80
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - app_network
-    depends_on:
-      - frontend
-      - backend
-      - postgres
-      - pgadmin
 
 networks:
   app_network:
     driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:
