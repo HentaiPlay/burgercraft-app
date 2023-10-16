@@ -14,8 +14,8 @@ services:
     networks:
       - app_network
     depends_on:
-      - traefik
-      - backend
+      backend:
+        condition: service_healthy
     labels:
       - "traefik.http.routers.frontend.rule=Host(`${APP_HOST}`)"
 
@@ -44,6 +44,11 @@ services:
         condition: service_started
     labels:
       - "traefik.http.routers.backend.rule=(Host(`${APP_HOST}`) && PathPrefix(`/api`))"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -X GET http://localhost:${APP_API_PORT}/api/healthcheck"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     command: sh -c "npx prisma migrate dev && npx prisma db seed && npm run start:dev"
 
   # DATABASE
