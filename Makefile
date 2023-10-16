@@ -5,7 +5,7 @@
 include .env
 $(eval dev:;@:)
 
-PURPLE_COLOR=\033[1;35m
+GREEN_COLOR=\033[92m
 NO_COLOR=\033[0m
 
 # Запуск приложения (с полной сборкой по умолчанию в --detach режиме)
@@ -31,10 +31,14 @@ stop:
 # Выкидывает ссылку на веб морду БД и данные для авторизации и первого подключения
 pgadmin:
 	@printf '\n%8s \xF0\x9F\x94\x97 (ctrl + click): http://${PGADMIN_HOST} \n'
-	@printf '\n%8s \xF0\x9F\x94\x90 ${PURPLE_COLOR} Авторизация: ${NO_COLOR} \n'
+	@printf '\n%8s \xF0\x9F\x94\x90 ${GREEN_COLOR} Авторизация: ${NO_COLOR} \n'
 	@printf '\n%7s email: ${PGADMIN_DEFAULT_EMAIL}'
 	@printf '\n%7s password: ${PGADMIN_DEFAULT_PASSWORD} \n'
-	@printf '\n%8s \xF0\x9F\x94\x8C ${PURPLE_COLOR} Создание подключения (если при сборке в "Servers" не создано подключение): ${NO_COLOR} \n'
+	@printf '\n%8s \xF0\x9F\x94\x8C ${GREEN_COLOR} Создание подключения (если при сборке в "Servers" не создано подключение): ${NO_COLOR} \n'
 	@printf '\n%8s Имя/адрес сервера: postgres'
 	@printf '\n%8s Имя пользователя: ${POSTGRES_USER}'
 	@printf '\n%8s Пароль: ${POSTGRES_PASSWORD} \n\n'
+
+#Выкидывает ссылку на документацию swagger api
+swagger:
+	@printf '\n%8s \xF0\x9F\x94\x97 (ctrl + click): http://${APP_HOST}/api/swagger \n\n'
