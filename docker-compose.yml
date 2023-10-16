@@ -46,9 +46,9 @@ services:
       - "traefik.http.routers.backend.rule=(Host(`${APP_HOST}`) && PathPrefix(`/api`))"
     healthcheck:
       test: ["CMD-SHELL", "curl -X GET http://localhost:${APP_API_PORT}/api/healthcheck"]
-      interval: 5s
+      interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 10
     command: sh -c "npx prisma migrate dev && npx prisma db seed && npm run start:dev"
 
   # DATABASE
