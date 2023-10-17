@@ -120,7 +120,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 1,\n    \"name\": \"new_name\",\n    \"password\": \"new_password\"\n}",
+							"raw": "{\n    \"name\": \"new_name\",\n    \"password\": \"new_password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -476,7 +476,7 @@
 	"auth": {
 		"type": "bearer",
 		"bearer": {
-			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImNyYWZ0ZXI5OCIsInJvbGUiOiJjcmFmdGVyIiwiaWF0IjoxNjk3NDk1OTcxLCJleHAiOjE2OTc0OTk1NzF9.0E0JZGa7DwaTb_KAdBwQfzLYbzTsTfoZhd_XmNDFVNI"
+			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImNyYWZ0ZXI5OCIsInJvbGUiOiJjcmFmdGVyIiwiaWF0IjoxNjk3NDk4OTEyLCJleHAiOjE2OTc1MDI1MTJ9.ycys5PoKymJSi-j4J0nWfc5lZM3XhxdHZoVuAAOYSJ4"
 		}
 	},
 	"event": [
