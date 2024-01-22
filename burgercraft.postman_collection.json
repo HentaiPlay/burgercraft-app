@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "c51685bb-57d6-4b02-8f8e-a787bb1621a6",
 		"name": "burgercraft",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "15685132"
 	},
 	"item": [
@@ -16,14 +16,23 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"\",\n    \"password\": \"\",\n    \"roleId\": 2\n}",
+							"raw": "{\n    \"name\": \"test\",\n    \"password\": \"password\",\n    \"roleId\": 2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{base_url}}/auth/register"
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
 					},
 					"response": []
 				},
@@ -44,7 +53,16 @@
 								}
 							}
 						},
-						"url": "{{base_url}}/auth/login"
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
 					},
 					"response": []
 				},
@@ -62,7 +80,16 @@
 								}
 							}
 						},
-						"url": "{{base_url}}/auth/refresh"
+						"url": {
+							"raw": "{{base_url}}/auth/refresh",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
 					},
 					"response": []
 				}
@@ -72,8 +99,39 @@
 			"name": "user",
 			"item": [
 				{
+					"name": "info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/info",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "avatar",
 					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
 						"disabledSystemHeaders": {}
 					},
 					"request": {
@@ -90,7 +148,20 @@
 								"type": "text"
 							}
 						],
-						"url": "{{base_url}}/users/avatar/2"
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/users/avatar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"avatar"
+							]
+						}
 					},
 					"response": []
 				},
@@ -109,7 +180,16 @@
 								}
 							]
 						},
-						"url": "{{base_url}}/users/avatar"
+						"url": {
+							"raw": "{{base_url}}/users/avatar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"avatar"
+							]
+						}
 					},
 					"response": []
 				},
@@ -127,7 +207,15 @@
 								}
 							}
 						},
-						"url": "{{base_url}}/users"
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -136,16 +224,15 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\": 1\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{base_url}}/users"
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
 					},
 					"response": []
 				}
@@ -173,7 +260,18 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "{{base_url}}/images/products/drinks/fanta.jpg"
+						"url": {
+							"raw": "{{base_url}}/images/products/drinks/fanta.jpg",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"images",
+								"products",
+								"drinks",
+								"fanta.jpg"
+							]
+						}
 					},
 					"response": []
 				},
@@ -182,7 +280,16 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{base_url}}/products/drink"
+						"url": {
+							"raw": "{{base_url}}/products/drink",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"drink"
+							]
+						}
 					},
 					"response": []
 				},
@@ -191,7 +298,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{base_url}}/products"
+						"url": {
+							"raw": "{{base_url}}/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
 					},
 					"response": []
 				},
@@ -209,7 +324,15 @@
 								}
 							}
 						},
-						"url": "{{base_url}}/products"
+						"url": {
+							"raw": "{{base_url}}/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
 					},
 					"response": []
 				},
@@ -227,7 +350,15 @@
 								}
 							}
 						},
-						"url": "{{base_url}}/products"
+						"url": {
+							"raw": "{{base_url}}/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
 					},
 					"response": []
 				},
@@ -252,7 +383,16 @@
 								}
 							]
 						},
-						"url": "{{base_url}}/products/photo"
+						"url": {
+							"raw": "{{base_url}}/products/photo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"photo"
+							]
+						}
 					},
 					"response": []
 				}
@@ -266,23 +406,33 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{base_url}}/burgers/1"
+						"url": {
+							"raw": "{{base_url}}/burgers/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"burgers",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "burgers",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": "{{base_url}}/burgers"
+						"url": {
+							"raw": "{{base_url}}/burgers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"burgers"
+							]
+						}
 					},
 					"response": []
 				},
@@ -300,7 +450,15 @@
 								}
 							}
 						},
-						"url": "{{base_url}}/burgers"
+						"url": {
+							"raw": "{{base_url}}/burgers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"burgers"
+							]
+						}
 					},
 					"response": []
 				},
@@ -318,7 +476,15 @@
 								}
 							}
 						},
-						"url": "{{base_url}}/burgers"
+						"url": {
+							"raw": "{{base_url}}/burgers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"burgers"
+							]
+						}
 					},
 					"response": []
 				},
@@ -336,7 +502,15 @@
 								}
 							}
 						},
-						"url": "{{base_url}}/burgers"
+						"url": {
+							"raw": "{{base_url}}/burgers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"burgers"
+							]
+						}
 					},
 					"response": []
 				}
@@ -350,28 +524,34 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{base_url}}/orders/1"
+						"url": {
+							"raw": "{{base_url}}/orders/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "order-list",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"isSaled\": false\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{base_url}}/orders/list"
+						"url": {
+							"raw": "{{base_url}}/orders/list",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"list"
+							]
+						}
 					},
 					"response": []
 				},
@@ -380,7 +560,17 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{base_url}}/images/orders/order_preview_content.png"
+						"url": {
+							"raw": "{{base_url}}/images/orders/order_preview_content.png",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"images",
+								"orders",
+								"order_preview_content.png"
+							]
+						}
 					},
 					"response": []
 				},
@@ -398,7 +588,15 @@
 								}
 							}
 						},
-						"url": "{{base_url}}/orders"
+						"url": {
+							"raw": "{{base_url}}/orders",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
 					},
 					"response": []
 				},
@@ -416,7 +614,15 @@
 								}
 							}
 						},
-						"url": "{{base_url}}/orders"
+						"url": {
+							"raw": "{{base_url}}/orders",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
 					},
 					"response": []
 				},
@@ -434,7 +640,16 @@
 								}
 							}
 						},
-						"url": "{{base_url}}/orders/status"
+						"url": {
+							"raw": "{{base_url}}/orders/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"status"
+							]
+						}
 					},
 					"response": []
 				}
@@ -448,7 +663,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{base_url}}/stats"
+						"url": {
+							"raw": "{{base_url}}/stats",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"stats"
+							]
+						}
 					},
 					"response": []
 				},
@@ -457,7 +680,16 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{base_url}}/stats/2"
+						"url": {
+							"raw": "{{base_url}}/stats/sum",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"stats",
+								"sum"
+							]
+						}
 					},
 					"response": []
 				}
@@ -468,16 +700,28 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "{{base_url}}/healthcheck"
+				"url": {
+					"raw": "{{base_url}}/healthcheck",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"healthcheck"
+					]
+				}
 			},
 			"response": []
 		}
 	],
 	"auth": {
 		"type": "bearer",
-		"bearer": {
-			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImNyYWZ0ZXI5OCIsInJvbGUiOiJjcmFmdGVyIiwiaWF0IjoxNjk3NDk4OTEyLCJleHAiOjE2OTc1MDI1MTJ9.ycys5PoKymJSi-j4J0nWfc5lZM3XhxdHZoVuAAOYSJ4"
-		}
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6ImNyYWZ0ZXI5OCIsInJvbGUiOiJjcmFmdGVyIiwiaWF0IjoxNzA1ODg4ODc0LCJleHAiOjE3MDU4ODkxNzR9.T9Zv4c8Rl56ROPkN5mS7mWtSzEQMWqn8naPnLQ-2ytM",
+				"type": "string"
+			}
+		]
 	},
 	"event": [
 		{
