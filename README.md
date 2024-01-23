@@ -42,9 +42,7 @@
 ### :open_file_folder: Карта проекта <sup>(список интерфейсов)</sup>
 Превью интерфейса
 
-<p align="center">
- <img width="100%" src="https://github.com/HentaiPlay/burgercraft-app/tree/develop/preview-app.webp" alt="app-review"/>
-</p>
+![Preview-app](https://github.com/HentaiPlay/burgercraft-app/raw/develop/preview-app.webp)
 
 Интерфейс представлен 4 страницами:
 * **Профиль** _(досутпно редактирование/удаление учетки, для админа - еще добавление)_
