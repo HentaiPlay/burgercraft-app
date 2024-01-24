@@ -1,11 +1,14 @@
 # BUILD FOR LOCAL DEVELOPMENT
 FROM node:18.16-alpine As development
 WORKDIR /usr/src/app
-RUN apk update && apk add curl
+RUN apk update --no-check-certificate && apk add --no-check-certificate curl
 COPY --chown=node:node burgercraft-app_backend/package*.json ./
 COPY --chown=node:node burgercraft-app_backend/prisma ./prisma/
 RUN rm -rf burgercraft-app_backend/dist
-RUN npm ci
+RUN npm i
+ENV NODE_TLS_REJECT_UNAUTHORIZED=0
+RUN npm config set strict-ssl false
+RUN npm i -g ts-node
 RUN npx prisma generate
 COPY --chown=node:node burgercraft-app_backend .
 
